@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import authRouter from './routers/authRouter.js'
+import employeesRouter from './routers/employeesRouter.js'
 import {authMiddleware} from './middleware/authMiddleware.js'
  
 dotenv.config()
@@ -8,7 +9,7 @@ dotenv.config()
 const app=express()
 app.use(express.json())
 app.use('/auth',authRouter)
-// app.use('/employees',authMiddleware,employeeRouter)
+app.use('/employees',authMiddleware,employeesRouter)
 // app.use('/departments',authMiddleware,departmentsRouter)
 
 
