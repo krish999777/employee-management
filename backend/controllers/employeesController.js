@@ -33,7 +33,7 @@ export async function postEmployee(req,res){
         })
     }catch(err){
         console.log(err)
-        res.status(500).json({error:"Internal server error"})
+        return res.status(500).json({error:"Internal server error"})
     }
 }
 export async function getEmployees(req,res){
@@ -44,9 +44,9 @@ export async function getEmployees(req,res){
             WHERE role='employee'
             ORDER BY users.id
             `)
-        res.status(200).json({employees:allEmployees.rows})
+        return res.status(200).json({employees:allEmployees.rows})
     }catch(err){
         console.log(err)
-        res.status(500).json({error:"Internal Server error"})
+        return res.status(500).json({error:"Internal Server error"})
     }
 }
