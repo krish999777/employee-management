@@ -36,3 +36,17 @@ export async function postEmployee(req,res){
         res.status(500).json({error:"Internal server error"})
     }
 }
+export async function getEmployees(req,res){
+    try{
+        const allEmployees=await db.query(`
+            SELECT users.id,users.name AS name,email,departments.name AS department_name FROM users
+            LEFT JOIN departments ON department_id=departments.id
+            WHERE role='employee'
+            ORDER BY users.id
+            `)
+        res.status(200).json({employees:allEmployees.rows})
+    }catch(err){
+        console.log(err)
+        res.status(500).json({error:"Internal Server error"})
+    }
+}
