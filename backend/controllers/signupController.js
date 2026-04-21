@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt'
 import db from '../db.js'
+import {generateToken} from '../utils/jwt.js'
+
 export async function signupController(req,res){
     try{
         let {name,email,password}=req.body
@@ -18,9 +20,13 @@ export async function signupController(req,res){
         
         const userData=await db.query(`INSERT INTO users(name,email,password_hash,role) VALUES ($1,$2,$3,$4) RETURNING id, role;`,[name,email,await bcrypt.hash(password,10),'employee'])
         const {id,role}=userData.rows[0]
+        const token=generateToken({
+            role,
+            id
+        })
         res.status(201)
         .json({
-            token:`BEARER ${1}`,
+            token:`BEARER ${token}`,
             user:{
                 id,
                 email,

@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import db from '../db.js'
+import {generateToken} from '../utils/jwt.js'
 
 export async function loginController(req,res){
     try{
@@ -21,8 +22,12 @@ export async function loginController(req,res){
         if(!isPasswordCorrect){
             return res.status(401).json({error:"Invalid credentials"})
         }
+        const token=generateToken({
+            role,
+            id
+        })
         return res.status(200).json({
-            token:`BEARER ${1}`,
+            token:`BEARER ${token}`,
             user: {
             id,
             email,
