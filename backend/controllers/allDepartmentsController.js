@@ -6,9 +6,13 @@ export async function postDepartment(req,res){
         if(!name){
             return res.status(400).json({error:"Missing name"})
         }
-        name=name.trim()
+        name=name.trim().toLowerCase()
         if(!name){
             return res.status(400).json({error:"Name cannot be empty"})
+        }
+        const isName=await db.query(`SELECT 1 FROM departments WHERE name=$1`,[name])
+        if(isName.rows.length>0){
+            return res.status(409).json({error:"Department already exists"})
         }
         const department=await db.query(`
             INSERT INTO departments(name) VALUES ($1) RETURNING id,name
