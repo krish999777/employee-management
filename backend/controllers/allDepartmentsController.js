@@ -20,3 +20,12 @@ export async function postDepartment(req,res){
         res.status(500).json({error:"Internal server error"})
     }
 }
+export async function getDepartments(req,res){
+    try{
+        const allDepartments=await db.query(`SELECT id,name FROM departments ORDER BY id`)
+        res.status(200).json({departments:allDepartments.rows})
+    }catch(err){
+        console.log(err)
+        res.status(500).json({error:"Internal server error"})
+    }
+}
