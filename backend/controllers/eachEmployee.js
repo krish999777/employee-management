@@ -62,3 +62,22 @@ export async function putEachEmployee(req,res){
     }
 
 }
+export async function deleteEachEmployeeController(req,res){
+    try{
+        const paramsId=req.params.id
+        if(Number(paramsId)===req.user.id){
+            return res.status(409).json({error:"Cannot delete self"})
+        }
+        const isUser=await db.query(`
+            SELECT 1 FROM users WHERE id=$1
+        `,[paramsId])
+        if(isUser.rows.length===0){
+            return res.status(404).json({error:"User not found"})
+        }
+        await db.query(`DELETE FROM users WHERE id=$1`,[paramsId])
+        res.status(204).send()
+    }catch(err){
+        console.log(err)
+        res.status(500).json({error:"Internal server error"})
+    }
+}
