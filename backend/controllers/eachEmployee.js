@@ -26,3 +26,39 @@ export async function getEachEmployee(req,res){
     }
     
 }
+export async function putEachEmployee(req,res){
+    try{
+        const paramsId=req.params.id
+        if(req.user.role!=='admin'&&req.user.id!==Number(paramsId)){
+            return res.status(401).json({error:"Not authorized"})
+        }
+        let {name,email,department_id}=req.body
+        const foundUser=await db.query(`
+            SELECT name,email,department_id FROM users WHERE id=$1
+        `,[paramsId])
+        if(foundUser.rows.length===0){
+            return res.status(404).json({error:"User not found"})
+        }
+        const {name:userName,email:userEmail,department_id:userDepartment_id}=foundUser.rows[0]
+        name=name||userName
+        email=email||userEmail
+        department_id=department_id||userDepartment_id
+        const newUser=await db.query(`
+            UPDATE users SET name=$1,email=$2,department_id=$3 WHERE id=$4
+            RETURNING id,name,email,department_id
+        `,[name,email,department_id,paramsId])
+        const {name:newName,email:newEmail,department_id:newDepartment,id:newId}=newUser.rows[0]
+        res.status(200).json({
+            user:{
+                name:newName,
+                email:newEmail,
+                department_id:newDepartment,
+                id:newId
+            }
+        })
+    }catch(err){
+        console.log(err)
+        res.status(500).json({error:"Internal server error"})
+    }
+
+}
