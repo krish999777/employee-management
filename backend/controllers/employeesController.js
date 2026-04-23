@@ -37,13 +37,21 @@ export async function postEmployee(req,res){
     }
 }
 export async function getEmployees(req,res){
+    let {search,department_id,page,limit}=req.query
+    page=page||1
+    limit=limit||10
+    const offset=(page-1)*limit
+    let params=[]
     try{
         const allEmployees=await db.query(`
             SELECT users.id,users.name AS name,email,departments.name AS department_name FROM users
             LEFT JOIN departments ON department_id=departments.id
-            WHERE role='employee'
+            WHERE role='employee' 
+            ${search?`AND users.name ILIKE $${params.push(`%${search}%`)}`:''}
+            ${department_id?`AND department_id=$${params.push(department_id)}`:''}
             ORDER BY users.id
-            `)
+            LIMIT $${params.push(limit)} OFFSET $${params.push(offset)}
+            `,params)
         return res.status(200).json({employees:allEmployees.rows})
     }catch(err){
         console.log(err)
