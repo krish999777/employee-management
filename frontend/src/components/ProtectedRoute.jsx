@@ -1,10 +1,16 @@
-import {useNavigate} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
+import Navbar from './Navbar'
 
 export default function({children}){
     const navigate=useNavigate()
     const token=localStorage.getItem('token')
     if(!token){
-        return navigate('/login')
+        return <Navigate to="/login"/>
     }
-    return children
+    return (
+    <>
+        <Navbar/>
+        {children}
+    </>
+    )
 }
