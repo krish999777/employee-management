@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Employees from './pages/Employees'
 import EachEmployee from './pages/EachEmployee'
+import CreateEmployee from './pages/CreateEmployee'
 export default function(){
   return(
     <BrowserRouter>
@@ -18,6 +19,11 @@ export default function(){
         <Route path='/employees/:id' element={
           <ProtectedRoute>
             <EachEmployee/>
+          </ProtectedRoute>
+        }/>
+        <Route path='/employees/create' element={
+          <ProtectedRoute>
+            <CreateEmployee/>
           </ProtectedRoute>
         }/>
       </Routes>
