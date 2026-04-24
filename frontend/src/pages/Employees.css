@@ -118,3 +118,28 @@
 .employee-link:hover {
     text-decoration: underline;
 }
+.employees-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.employees-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.add-employee-btn {
+    background: #059669;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.add-employee-btn:hover {
+    background: #047857;
+}

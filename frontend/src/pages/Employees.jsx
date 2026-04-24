@@ -66,7 +66,11 @@ export default function(){
     return(
     <div className="employees-container">
         <div className="employees-header">
-            <h2>Employees</h2>
+        <h2>Employees</h2>
+        <div className="employees-header-actions">
+            <Link to="/employees/create" className="add-employee-btn">
+                + Add Employee
+            </Link>
             <form onSubmit={handleSearch} className="employees-filters">
                 <input
                     type="text"
@@ -86,6 +90,7 @@ export default function(){
                 </button>
             </form>
         </div>
+    </div>
         {loading && <div className="employees-loading">Loading...</div>}
         {error && <div className="employees-error">{error}</div>}
         {!loading && employees.length === 0 && (
