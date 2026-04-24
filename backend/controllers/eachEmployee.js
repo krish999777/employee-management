@@ -43,6 +43,7 @@ export async function putEachEmployee(req,res){
         name=name||userName
         email=email||userEmail
         department_id=department_id||userDepartment_id
+        department_id=department_id===-1?null:department_id
         const newUser=await db.query(`
             UPDATE users SET name=$1,email=$2,department_id=$3 WHERE id=$4
             RETURNING id,name,email,department_id
