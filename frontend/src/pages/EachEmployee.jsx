@@ -142,7 +142,6 @@ export default function(){
                         </select>
                     </div>
                     <div className="form-actions">
-                        <button type="submit">Save</button>
                         <button 
                             type="button" 
                             className="secondary"
@@ -150,6 +149,7 @@ export default function(){
                         >
                             Cancel
                         </button>
+                        <button type="submit">Save</button>
                     </div>
                 </form>
             </div>
