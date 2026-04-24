@@ -1,0 +1,150 @@
+.each-employee-container {
+    padding: 24px;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* HEADER */
+.each-employee-header {
+    margin-bottom: 16px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #4f46e5;
+    font-size: 14px;
+}
+
+/* STATES */
+.each-employee-loading,
+.each-employee-error {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.each-employee-error {
+    color: #dc2626;
+}
+
+/* VIEW CARD */
+.each-employee-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+}
+
+.each-employee-info h2 {
+    margin-bottom: 16px;
+}
+
+.each-employee-field {
+    margin-bottom: 12px;
+}
+
+.each-employee-field span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.each-employee-field p {
+    margin: 4px 0 0;
+    font-weight: 500;
+}
+
+/* ACTIONS */
+.each-employee-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.each-employee-actions button {
+    padding: 6px 12px;
+    border: none;
+    background: #111827;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.each-employee-actions .danger {
+    background: #dc2626;
+}
+
+.each-employee-actions .danger:hover {
+    background: #b91c1c;
+}
+
+.dept-link {
+    text-decoration: none;
+    font-size: 14px;
+    color: #4f46e5;
+    display: flex;
+    align-items: center;
+}
+
+/* EDIT CARD */
+.each-employee-edit-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+}
+
+.each-employee-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* INPUTS */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #334155;
+}
+
+.input-group input,
+.input-group select {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #6366f1;
+}
+
+/* FORM ACTIONS */
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.form-actions button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #111827;
+    color: white;
+}
+
+.form-actions .secondary {
+    background: #64748b;
+}
+
+.form-actions .secondary:hover {
+    background: #475569;
+}

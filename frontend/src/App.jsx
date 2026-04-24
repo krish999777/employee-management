@@ -3,6 +3,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Employees from './pages/Employees'
+import EachEmployee from './pages/EachEmployee'
 export default function(){
   return(
     <BrowserRouter>
@@ -14,6 +15,11 @@ export default function(){
             <Employees/>
           </ProtectedRoute>
           }/>
+        <Route path='/employees/:id' element={
+          <ProtectedRoute>
+            <EachEmployee/>
+          </ProtectedRoute>
+        }/>
       </Routes>
     </BrowserRouter>
   )

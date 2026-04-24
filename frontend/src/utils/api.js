@@ -52,3 +52,44 @@ export async function getAllDepartments(){
     }
     return data
 }
+export async function getEachEmployee(id){
+    const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees/${id}`,{
+        headers:{"authorization":token}
+    })
+    const data=await res.json()
+    if(!res.ok){
+        throw new Error(data.error)
+    }
+    return data
+}
+export async function putEachEmployee(id,name,email,department_id){
+    const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees/${id}`,{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json",
+            "authorization":token
+        },
+        body:JSON.stringify({
+            name,email,department_id
+        })
+    })
+    const data=await res.json()
+    if(!res.ok){
+        throw new Error(data.error)
+    }
+    return data
+}
+export async function deleteEmployee(id){
+    const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees/${id}`,{
+        method:"DELETE",
+        headers:{
+            "authorization":token
+        }
+    })
+    if(res.status===204)return
+    const data=await res.json()
+    if(!res.ok){
+        throw new Error(data.error)
+    }
+    return data
+}
