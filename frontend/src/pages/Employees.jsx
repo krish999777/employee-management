@@ -1,4 +1,5 @@
 import './Employees.css'
+import {Link} from 'react-router-dom'
 import {useState,useEffect} from 'react'
 import {getAllEmployees,getAllDepartments} from '../utils/api.js'
 
@@ -99,7 +100,11 @@ export default function(){
                 </div>
                 {employees.map(emp => (
                     <div key={emp.id} className="employees-row">
-                        <div>{emp.name}</div>
+                        <div>
+                            <Link to={`/employees/${emp.id}`} className="employee-link">
+                                {emp.name}
+                            </Link>
+                        </div>
                         <div>{emp.email}</div>
                         <div>{emp.department_name || '-'}</div>
                     </div>
