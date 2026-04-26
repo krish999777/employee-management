@@ -1,7 +1,7 @@
 import './EachEmployee.css'
 import {useParams,Link,useNavigate} from 'react-router-dom'
 import {useEffect,useState} from 'react'
-import {getAllDepartments, getEachEmployee,putEachEmployee,deleteEmployee} from '../utils/api.js'
+import {getAllDepartments, getEachEmployee,putEachEmployee,deleteEmployee,getAuthMe} from '../utils/api.js'
 
 export default function(){
     const [loading,setLoading]=useState(false)
@@ -9,6 +9,7 @@ export default function(){
     const [userData,setUserData]=useState(null)
     const [departments,setDepartments]=useState([])
     const [isEditing,setIsEditing]=useState(false)
+    const [data,setData]=useState({})
     
     const {id}=useParams()
     const navigate=useNavigate()
@@ -17,6 +18,11 @@ export default function(){
         try{
             setLoading(true)
             const data=await getEachEmployee(id)
+            const roleData=await getAuthMe()
+            if(roleData.user.role==='employee'){
+                setIsEditing(true)
+            }
+            setData(roleData.user)
             setUserData(data.user)
         }catch(err){
             setError(err.message)
@@ -53,6 +59,9 @@ export default function(){
             await putEachEmployee(id,name,email,Number(dep))
             setIsEditing(false)
             await fetchEachEmployee()
+            if(data.role==='employee'){
+                navigate('/account')
+            }
         }catch(err){
             setError(err.message)
         }finally{
@@ -72,7 +81,12 @@ export default function(){
     return(
     <div className="each-employee-container">
         <div className="each-employee-header">
+        {
+            data.role==='admin'?
             <Link to="/employees" className="back-link">← Back to employees</Link>
+            :
+            <Link to="/account" className="back-link">← Back to account</Link>
+        }
         </div>
         {error && <div className="each-employee-error">{error}</div>}
         {loading && <div className="each-employee-loading">Loading...</div>}
@@ -99,9 +113,9 @@ export default function(){
                     <button onClick={() => setIsEditing(true)}>
                         Edit
                     </button>
-                    <button className="danger" onClick={deleteUser}>
+                    {data.id===Number(id)?'':<button className="danger" onClick={deleteUser}>
                         Delete
-                    </button>
+                    </button>}
                 </div>
             </div>
         )}
@@ -145,7 +159,7 @@ export default function(){
                         <button 
                             type="button" 
                             className="secondary"
-                            onClick={() => setIsEditing(false)}
+                            onClick={() => data.role==='admin'?setIsEditing(false):navigate('/account')}
                         >
                             Cancel
                         </button>
