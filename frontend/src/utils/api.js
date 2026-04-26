@@ -114,3 +114,14 @@ export async function createEmployee(name,email,password){
     }
     return data
 }
+export async function getAuthMe(){
+    const token=localStorage.getItem('token')
+    const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`,{
+        headers:{"authorization":token}
+    })
+    const data=await res.json()
+    if(!res.ok){
+        throw new Error(data.error)
+    }
+    return data
+}
