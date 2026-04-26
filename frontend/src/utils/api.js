@@ -1,5 +1,3 @@
-const token=localStorage.getItem('token')
-
 export async function postLogin(email,password){
     const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/login`,{
         method:'POST',
@@ -29,6 +27,7 @@ export async function postSignup(name,email,password){
     return data
 }
 export async function getAllEmployees(search="",dep=-1,page=1){
+    const token=localStorage.getItem('token')
     let depQuery=""
     if(dep!==-1){
         depQuery=`&department_id=${dep}`
@@ -43,6 +42,7 @@ export async function getAllEmployees(search="",dep=-1,page=1){
     return data
 }
 export async function getAllDepartments(){
+    const token=localStorage.getItem('token')
     const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/departments`,{
         headers:{"authorization":token}
     })
@@ -53,6 +53,7 @@ export async function getAllDepartments(){
     return data
 }
 export async function getEachEmployee(id){
+    const token=localStorage.getItem('token')
     const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees/${id}`,{
         headers:{"authorization":token}
     })
@@ -63,6 +64,7 @@ export async function getEachEmployee(id){
     return data
 }
 export async function putEachEmployee(id,name,email,department_id){
+    const token=localStorage.getItem('token')
     const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees/${id}`,{
         method:"PUT",
         headers:{
@@ -80,6 +82,7 @@ export async function putEachEmployee(id,name,email,department_id){
     return data
 }
 export async function deleteEmployee(id){
+    const token=localStorage.getItem('token')
     const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees/${id}`,{
         method:"DELETE",
         headers:{
@@ -94,6 +97,7 @@ export async function deleteEmployee(id){
     return data
 }
 export async function createEmployee(name,email,password){
+    const token=localStorage.getItem('token')
     const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees`,{
         method:'POST',
         headers:{
