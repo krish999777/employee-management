@@ -143,3 +143,31 @@ export async function postDepartment(name){
     }
     return data
 }
+export async function deleteDepartment(id){
+    const token=localStorage.getItem('token')
+    const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/departments/${id}`,{
+        method:'DELETE',
+        headers:{
+            "authorization":token
+        }
+    })
+    if(res.status===204)return
+    const data=await res.json()
+    if(!res.ok){
+        throw new Error(data.error)
+    }
+    return data
+}
+export async function editDepartment(id,name){
+    const token=localStorage.getItem('token')
+    const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/departments/${id}`,{
+        method:'PUT',
+        headers:{
+            "authorization":token,
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            name
+        })
+    })
+}

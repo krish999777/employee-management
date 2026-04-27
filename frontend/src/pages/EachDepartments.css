@@ -1,0 +1,97 @@
+.each-department-container {
+    padding: 24px;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* HEADER */
+.each-department-header {
+    margin-bottom: 16px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #4f46e5;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* STATES */
+.each-departments-loading,
+.each-departments-error {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.each-departments-error {
+    color: #dc2626;
+}
+
+/* VIEW CARD */
+.each-department-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+}
+
+.each-department-card h2 {
+    margin-bottom: 16px;
+}
+
+/* ACTIONS */
+.each-department-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.each-department-actions button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #111827;
+    color: white;
+    cursor: pointer;
+}
+
+.each-department-actions .danger {
+    background: #dc2626;
+}
+
+/* EDIT CARD */
+.each-department-edit-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+}
+
+.department-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.department-form input {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+/* FORM ACTIONS */
+.form-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.form-actions .submit-btn {
+    background: #059669;
+    color: white;
+}
+
+.form-actions .cancel-btn {
+    background: #64748b;
+    color: white;
+}

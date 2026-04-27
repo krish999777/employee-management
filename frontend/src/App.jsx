@@ -7,6 +7,7 @@ import EachEmployee from './pages/EachEmployee'
 import CreateEmployee from './pages/CreateEmployee'
 import Account from './pages/Account'
 import Departments from './pages/Departments'
+import EachDepartments from './pages/EachDepartments'
 
 export default function(){
   return(
@@ -37,6 +38,11 @@ export default function(){
         <Route path="/departments" element={
           <ProtectedRoute>
             <Departments/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/departments/:id" element={
+          <ProtectedRoute>
+            <EachDepartments/>
           </ProtectedRoute>
         }/>
       </Routes>
