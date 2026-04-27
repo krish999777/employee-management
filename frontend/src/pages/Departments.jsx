@@ -1,19 +1,23 @@
 import './Departments.css'
 import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {getAllDepartments,postDepartment} from '../utils/api.js'
+import {getAllDepartments,postDepartment,getAuthMe} from '../utils/api.js'
 
 export default function(){
     const [loading,setLoading]=useState(false)
     const [error,setError]=useState(null)
     const [data,setData]=useState(null)
     const [isEditing,setIsEditing]=useState(false)
+    const [userRole,setUserRole]=useState()
 
     async function fetchDepartments(){
         try{
             setError(null)
             setLoading(true)
             const data=await getAllDepartments()
+            const roleData=await getAuthMe()
+            const {role}=roleData.user
+            setUserRole(role)
             setData(data.departments)
         }catch(err){
             setError(err.message)
@@ -46,7 +50,7 @@ export default function(){
     <div className="departments-container">
         <div className="departments-header">
             <h2>Departments</h2>
-            {!isEditing && (
+            {(!isEditing&&userRole==='admin') && (
                 <button 
                     className="create-btn"
                     onClick={() => setIsEditing(true)}
