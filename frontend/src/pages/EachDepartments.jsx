@@ -1,6 +1,6 @@
 import './EachDepartments.css'
 import {useParams,useNavigate} from 'react-router-dom'
-import {getAllDepartments,deleteDepartment,editDepartment} from '../utils/api.js'
+import {getAllDepartments,deleteDepartment,editDepartment,getAuthMe} from '../utils/api.js'
 import {useState,useEffect} from 'react'
 
 export default function(){
@@ -8,6 +8,7 @@ export default function(){
     const [error,setError]=useState(null)
     const [isEditing,setIsEditing]=useState(false)
     const [data,setData]=useState(null)
+    const [userRole,setUserRole]=useState()
 
     const {id}=useParams()
     const navigate=useNavigate()
@@ -23,6 +24,9 @@ export default function(){
                 setError('Not Found')
                 return 
             }
+            const roleData=await getAuthMe()
+            const {role}=roleData.user
+            setUserRole(role)
             setData(dep)
         }catch(err){
             setError(err.message)
@@ -56,7 +60,6 @@ export default function(){
             setLoading(false)
         }
     }
-
     return(
     <div className="each-department-container">
 
@@ -76,7 +79,7 @@ export default function(){
             <div className="each-department-card">
                 <h2>{data.name}</h2>
 
-                <div className="each-department-actions">
+                {userRole==='admin'?<div className="each-department-actions">
                     <button onClick={() => setIsEditing(true)}>
                         Edit
                     </button>
@@ -84,7 +87,7 @@ export default function(){
                     <button className="danger" onClick={handleDelete}>
                         Delete
                     </button>
-                </div>
+                </div>:''}
             </div>
         )}
 
