@@ -9,7 +9,6 @@ export async function deleteDepartment(req,res){
         }
         res.status(204).send()
     }catch(err){
-        console.log(err)
         res.status(500).json({error:"Internal server error"})
     }
 }
@@ -38,7 +37,6 @@ export async function putDepartment(req,res){
             department:{id:paramsId,name:newName}
         })
     }catch(err){
-        console.log(err)
         res.status(500).json({error:"Internal server error"})
     }
 }

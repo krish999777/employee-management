@@ -20,7 +20,6 @@ export async function postDepartment(req,res){
         const {id,name:newName}=department.rows[0]
         res.status(201).json({department:{id,name:newName}})
     }catch(err){
-        console.log(err)
         res.status(500).json({error:"Internal server error"})
     }
 }
@@ -29,7 +28,6 @@ export async function getDepartments(req,res){
         const allDepartments=await db.query(`SELECT id,name FROM departments ORDER BY id`)
         res.status(200).json({departments:allDepartments.rows})
     }catch(err){
-        console.log(err)
         res.status(500).json({error:"Internal server error"})
     }
 }

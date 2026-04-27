@@ -8,8 +8,7 @@ export function meController(req,res){
         .json({
             user:{id,role}
         })
-    }catch(err){
-        console.log(err)
+    }catch(err){  
         res.status(500).json({error:"Internal server error"})
     }
 }

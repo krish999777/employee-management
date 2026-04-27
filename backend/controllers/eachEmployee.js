@@ -21,7 +21,6 @@ export async function getEachEmployee(req,res){
             }
         })
     }catch(err){
-        console.log(err)
         return res.status(500).json({error:"Internal server error"})
     }
     
@@ -58,7 +57,6 @@ export async function putEachEmployee(req,res){
             }
         })
     }catch(err){
-        console.log(err)
         res.status(500).json({error:"Internal server error"})
     }
 
@@ -78,7 +76,6 @@ export async function deleteEachEmployeeController(req,res){
         await db.query(`DELETE FROM users WHERE id=$1`,[paramsId])
         res.status(204).send()
     }catch(err){
-        console.log(err)
         res.status(500).json({error:"Internal server error"})
     }
 }
