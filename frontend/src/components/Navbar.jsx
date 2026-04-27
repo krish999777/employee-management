@@ -25,6 +25,7 @@ export default function Navbar() {
                 {role === 'admin' && (
                     <NavLink to="/employees">Employees</NavLink>
                 )}
+                <NavLink to="/departments">Departments</NavLink>
             </div>
 
             <button className="logout-btn" onClick={logout}>

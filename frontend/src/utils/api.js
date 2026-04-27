@@ -125,3 +125,21 @@ export async function getAuthMe(){
     }
     return data
 }
+export async function postDepartment(name){
+    const token=localStorage.getItem('token')
+    const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/departments`,{
+        method:'POST',
+        headers:{
+            "authorization":token,
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            name
+        })
+    })
+    const data=await res.json()
+    if(!res.ok){
+        throw new Error(data.error)
+    }
+    return data
+}

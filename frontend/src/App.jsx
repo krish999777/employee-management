@@ -6,6 +6,7 @@ import Employees from './pages/Employees'
 import EachEmployee from './pages/EachEmployee'
 import CreateEmployee from './pages/CreateEmployee'
 import Account from './pages/Account'
+import Departments from './pages/Departments'
 
 export default function(){
   return(
@@ -31,6 +32,11 @@ export default function(){
         <Route path="/account" element={
           <ProtectedRoute>
             <Account/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/departments" element={
+          <ProtectedRoute>
+            <Departments/>
           </ProtectedRoute>
         }/>
       </Routes>
