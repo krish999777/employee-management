@@ -8,11 +8,13 @@ import CreateEmployee from './pages/CreateEmployee'
 import Account from './pages/Account'
 import Departments from './pages/Departments'
 import EachDepartments from './pages/EachDepartments'
+import Root from './pages/Root'
 
 export default function(){
   return(
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Root/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/employees' element={
