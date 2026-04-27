@@ -45,7 +45,6 @@ A full-stack employee management system with role-based access, authentication, 
 ### Frontend
 - React (Vite)
 - React Router
-- Fetch API
 
 ### Backend
 - Node.js
@@ -54,12 +53,12 @@ A full-stack employee management system with role-based access, authentication, 
 - bcrypt for password hashing
 
 ### Database
-- PostgreSQL (Supabase)
+- PostgreSQL
 
 ### Deployment
 - Frontend: Vercel
-- Backend: (your backend provider)
-- Database: Supabase
+- Backend: Render
+- Database: Neon
 
 ---
 
@@ -85,6 +84,7 @@ server/   → Express backend
 VITE_API_BASE_URL=your_backend_url
 
 ### Backend (.env)
+PORT=your_port
 DATABASE_URL=your_database_url  
 JWT_SECRET=your_secret  
 
@@ -93,16 +93,16 @@ JWT_SECRET=your_secret
 ## 🧪 Running Locally
 
 ### Clone repository
-git clone <your-repo-url>  
-cd <repo-name>  
+git clone https://github.com/krish999777/employee-management
+cd employee-management  
 
 ### Backend
-cd server  
+cd backend  
 npm install  
 npm run dev  
 
 ### Frontend
-cd client  
+cd frontend  
 npm install  
 npm run dev  
 
@@ -112,14 +112,6 @@ npm run dev
 
 - Passwords are securely hashed using bcrypt
 - Role-based access enforced on both frontend and backend
-
----
-
-## 📌 Future Improvements
-
-- Better pagination
-- UI consistency improvements
-- Token expiration handling
 
 ---
 
