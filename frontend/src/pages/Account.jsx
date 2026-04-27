@@ -24,7 +24,6 @@ export default function(){
     useEffect(()=>{
         getData()
     },[])
-    console.log(data)
     return(
     <div className="account-container">
 
